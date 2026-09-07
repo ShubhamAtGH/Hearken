@@ -32,7 +32,7 @@ export default function LandingPage() {
       <div
         className="fixed inset-0 -z-10"
         style={{
-          backgroundImage: `url(${'/NEWBG.jpg'})`,
+          backgroundImage: `url('/NEWBG.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
