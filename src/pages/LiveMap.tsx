@@ -30,9 +30,7 @@ export default function LiveMap() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
 
-  // ---- Mobile bottom sheet state (Apple Maps style) ----
-  // Heights are stored as vh (% of viewport height) so we never touch
-  // `window` during render — only inside pointer event handlers.
+
   const SHEET_SNAPS = { peek: 16, half: 46, full: 88 } as const;
   const [sheetHeightVh, setSheetHeightVh] = useState<number>(SHEET_SNAPS.peek);
   const [isDraggingSheet, setIsDraggingSheet] = useState(false);
@@ -157,7 +155,7 @@ export default function LiveMap() {
       container: mapContainerRef.current,
 
       // Beautiful light style
-      style: "https://tiles.openfreemap.org/styles/liberty",
+      style: "https://tiles.openfreemap.org/styles/liberty/style.json",
 
       center: [72.5714, 23.0225], // Ahmedabad
       zoom: 12.8,
@@ -490,7 +488,7 @@ export default function LiveMap() {
           )}
 
           {/* =========================================
-              MOBILE DRAGGABLE BOTTOM SHEET (Apple Maps style)
+              MOBILE DRAGGABLE BOTTOM SHEET 
           ========================================= */}
           <div
             className="absolute bottom-0 left-0 right-0 pointer-events-auto flex flex-col rounded-t-3xl bg-[#F7F1E4] border-t border-[#DDC8A6] shadow-[0_-8px_30px_rgba(0,0,0,0.15)] overflow-hidden"
