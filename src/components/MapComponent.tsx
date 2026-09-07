@@ -76,7 +76,24 @@ const MapComponent: React.FC = () => {
 
     mapRef.current = new maplibregl.Map({
       container: mapContainerRef.current,
-      style: "https://tiles.openfreemap.org/styles/liberty/style.json",
+      style: {
+  version: 8,
+  sources: {
+    osm: {
+      type: "raster",
+      tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+      tileSize: 256,
+      attribution: "© OpenStreetMap contributors"
+    }
+  },
+  layers: [
+    {
+      id: "osm",
+      type: "raster",
+      source: "osm"
+    }
+  ]
+},
       center: [72.5714, 23.0225],
       zoom: 12.8,
       pitch: 45,
