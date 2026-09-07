@@ -155,7 +155,7 @@ export default function LiveMap() {
       container: mapContainerRef.current,
 
       // Beautiful light style
-      style: "https://tiles.openfreemap.org/styles/liberty/style.json",
+      style: "https://tiles.openfreemap.org/styles/liberty",
 
       center: [72.5714, 23.0225], // Ahmedabad
       zoom: 12.8,
