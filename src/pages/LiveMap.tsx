@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { floodSensors } from "@/lib/floodSensors";
+import { setWorkerUrl } from 'maplibre-gl';
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'; // Use .js instead of .mjs if you are on MapLibre v4 or below
+setWorkerUrl(workerUrl);
 import * as maplibregl from 'maplibre-gl';
 import { NavLink } from "react-router-dom";
 import { floodGeoJSON } from "@/lib/floodGeoJSON";
