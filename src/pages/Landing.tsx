@@ -2,7 +2,7 @@
 
 
 import { useState, useEffect } from "react";
-import newBg from "@/imports/NEWBG.jpg";
+
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
@@ -36,7 +36,7 @@ export default function LandingPage() {
       <div
         className="fixed inset-0 -z-10"
         style={{
-          backgroundImage: `url(${newBg})`,
+          backgroundImage: `url(${'/NEWBG.jpg'})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
