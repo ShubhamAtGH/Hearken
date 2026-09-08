@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { floodSensors } from "@/lib/floodSensors";
 import { setWorkerUrl } from 'maplibre-gl';
-import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'; // Use .js instead of .mjs if you are on MapLibre v4 or below
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'; 
 setWorkerUrl(workerUrl);
 import * as maplibregl from 'maplibre-gl';
 import { NavLink } from "react-router-dom";
@@ -31,7 +31,8 @@ export default function LiveMap() {
   const [floodOpacity, setFloodOpacity] = useState(0.22);
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<maplibregl.Map | null>(null);
+  const mapRef = useRef<maplibregl.Map | null>(null); 
+  const userMarkerRef = useRef<maplibregl.Marker | null>(null);
 
 
   const SHEET_SNAPS = { peek: 16, half: 46, full: 88 } as const;
@@ -86,7 +87,7 @@ export default function LiveMap() {
     snapSheetTo(target);
   };
 
-  // 0 -> 1 progress between "half" and "full", used to fade in a backdrop
+  
   const sheetBackdropOpacity = Math.min(
     1,
     Math.max(
@@ -105,7 +106,7 @@ export default function LiveMap() {
   const addFloodLayers = () => {
     if (!mapRef.current) return;
 
-    // Don't add twice
+    
     if (mapRef.current.getSource("flood-zone")) return;
 
     mapRef.current.addSource("flood-zone", {
@@ -157,7 +158,7 @@ export default function LiveMap() {
     mapRef.current = new maplibregl.Map({
       container: mapContainerRef.current,
 
-      // Beautiful light style
+      //  light style
       style: "https://tiles.openfreemap.org/styles/liberty",
 
       center: [72.5714, 23.0225], // Ahmedabad
@@ -167,7 +168,7 @@ export default function LiveMap() {
       bearing: -10,
 
 
-      // Apple Maps feeling
+      
       dragRotate: true,
       touchPitch: true,
       pitchWithRotate: true,
@@ -216,7 +217,41 @@ export default function LiveMap() {
           .setLngLat(sensor.coordinates)
           .addTo(mapRef.current!);
       });
+      if (navigator.geolocation && mapRef.current) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const coords: [number, number] = [
+        position.coords.longitude,
+        position.coords.latitude,
+      ];
+
+      // Create the marker 
+      if (!userMarkerRef.current) {
+        const dot = document.createElement("div");
+        dot.className =
+          "w-5 h-5 rounded-full bg-[#2563EB] border-[3px] border-white shadow-lg";
+
+        userMarkerRef.current = new maplibregl.Marker({
+          element: dot,
+        }).addTo(mapRef.current!);
+      }
+
+      // Set or update position
+      userMarkerRef.current.setLngLat(coords);
+
+      // Optional: center map on user
+      mapRef.current!.flyTo({
+        center: coords,
+        zoom: 14,
+        duration: 1200,
+      });
+    },
+    (err) => console.error("Geolocation failed:", err),
+    { enableHighAccuracy: true }
+  );
+}
     });
+
 
     // Cleanup when component unmounts
     return () => {
