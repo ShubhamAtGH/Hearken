@@ -14,7 +14,7 @@ import {
 const stats = [
   {
     title: "Active Flood Zones",
-    value: "5",
+    value: "12",
     change: "+2 today",
     icon: TriangleAlert,
     color: "text-blue-700",
@@ -29,7 +29,7 @@ const stats = [
     bg: "bg-orange-50",
   },
   {
-    title: "Incidents Reported",
+    title: "People Affected",
     value: "2,430",
     change: "Across Ahmedabad",
     icon: Users,
@@ -257,7 +257,7 @@ export default function Dashboard() {
             <div className="p-4 border-t border-[#E6D7BD] flex justify-between text-sm">
               <span className="text-[#8C7466]">Flood Zones</span>
 
-              <span className="font-semibold text-[#12352B]">6 Active</span>
+              <span className="font-semibold text-[#12352B]">12 Active</span>
             </div>
           </div>
         </section>
