@@ -381,7 +381,7 @@ export default function LiveMap() {
               <button
                 onClick={() => {
                   if (!mapRef.current || !navigator.geolocation) return;
-                  navigator.geolocation.getCurrentPosition(
+                  navigator.geolocation.watchPosition(
                     (position) => {
                       mapRef.current?.flyTo({ center: [position.coords.longitude, position.coords.latitude], zoom: 15, pitch: 60, bearing: 0, speed: 1.2, curve: 1.5, essential: true });
                     },
