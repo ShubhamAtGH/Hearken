@@ -30,6 +30,12 @@ export default function LiveMap() {
   const [showFloodLayer, setShowFloodLayer] = useState(true);
   const [floodOpacity, setFloodOpacity] = useState(0.22);
 
+  const options = {
+  enableHighAccuracy: true, 
+  timeout: 10000,           
+  maximumAge: 0             
+};
+
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
 
@@ -379,7 +385,7 @@ export default function LiveMap() {
                     (position) => {
                       mapRef.current?.flyTo({ center: [position.coords.longitude, position.coords.latitude], zoom: 15, pitch: 60, bearing: 0, speed: 1.2, curve: 1.5, essential: true });
                     },
-                    () => alert("Location permission denied.")
+                    () => alert("Location permission denied."), options
                   );
                 }}
                 className="w-12 h-12 flex items-center justify-center hover:scale-105 hover:bg-[#F5EEE0] transition-all active:scale-95"
