@@ -76,7 +76,7 @@ const incidents = [
 
 export default function Dashboard() {
   return (
-    <div className="flex h-screen bg-[#F7F1E4] overflow-hidden text-[#4A3328]">
+    <div className="flex min-h-dvh bg-[#F7F1E4] overflow-hidden text-[#4A3328]">
       <Sidebar />
 
       <main className="flex-1 overflow-y-auto p-4 md:p-6">

@@ -25,7 +25,7 @@
 }
 
 :root {
-  
+
   --background: #1C2E25;
   
   
@@ -40,8 +40,16 @@
   --border: rgba(255, 249, 196, 0.2);
 }
 
-body {
-  background-color: var(--background);
+
+html {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+body, #root {
+   margin: 0;
+  min-height: 100dvh;
+  /* background-color: var(--background); */
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

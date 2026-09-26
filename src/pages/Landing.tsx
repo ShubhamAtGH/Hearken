@@ -24,7 +24,7 @@ export default function LandingPage() {
 
   return (
     <div
-      className={`min-h-screen grain-text text-foreground flex flex-col md:flex-row relative font-sans ${
+      className={`min-h-dvh grain-text text-foreground flex flex-col md:flex-row relative font-sans ${
         menuOpen ? "overflow-hidden h-dvh" : "overflow-x-hidden"
       }`}
     >

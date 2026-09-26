@@ -33,7 +33,7 @@ export function SidebarLink({ href, icon: Icon, isActive, label }: SidebarLinkPr
 // 2. Main Sidebar Component
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex w-[72px] h-screen flex-col items-center py-6 border-r border-[#E6D7BD] bg-[#F7F1E4] z-20">
+    <aside className="hidden md:flex w-[72px] min-h-dvh flex-col items-center py-6 border-r border-[#E6D7BD] bg-[#F7F1E4] z-20">
       <nav className="flex flex-col gap-4">
         
         <SidebarLink 
