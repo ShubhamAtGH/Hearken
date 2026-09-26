@@ -32,7 +32,7 @@ export default function LiveMap() {
 
   const options = {
   enableHighAccuracy: true, 
-  timeout: 10000,           
+  timeout: 10000,     //max time taken to return a position      
   maximumAge: 0             
 };
 
@@ -384,6 +384,8 @@ export default function LiveMap() {
                   navigator.geolocation.watchPosition(
                     (position) => {
                       mapRef.current?.flyTo({ center: [position.coords.longitude, position.coords.latitude], zoom: 15, pitch: 60, bearing: 0, speed: 1.2, curve: 1.5, essential: true });
+                      // console.log(`User's location: ${position.coords.latitude}, ${position.coords.longitude}`)
+                      // console.log(`Accuracy: ${position.coords.accuracy} meters`)
                     },
                     () => alert("Location permission denied."), options
                   );
